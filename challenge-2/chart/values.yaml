@@ -1,0 +1,76 @@
+environment: env
+domain: mydomain.net
+application: myApp
+project: myProj
+serviceName: myServ
+
+replicaCount: 1
+
+image:
+  repository: hello-world
+  pullPolicy: Always
+  tag: latest
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  automount: true
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+podLabels: {}
+
+podSecurityContext: {}
+
+securityContext: {}
+
+environmentVariables: []
+
+containerPorts: []
+
+service: {}
+
+ingress:
+  enabled: false
+  className: "traefik"
+  annotations:
+    kubernetes.io/ingress.class: traefik
+    traefik.ingress.kubernetes.io/router.entrypoints: websecure,web
+    traefik.ingress.kubernetes.io/router.middlewares: namespace-service-ssl-redirect@kubernetescrd
+  hosts:
+    - host: hostname.domain.net
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: certificate-name
+      hosts:
+        - hostname.domain.net
+  certificate:
+    environment: environment
+    duration: 2160h
+    renewalLeadTime: 360h
+    organization: SystemName
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+persistentVolumeClaims: []
+
+volumes: []
+
+volumeMounts: []
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

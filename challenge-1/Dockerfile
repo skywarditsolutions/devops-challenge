@@ -2,7 +2,9 @@ FROM python:3.10-slim
 
 # Pull in CLI args
 ARG SERVICE_ADDRESS=0.0.0.0
-ARG SERVICE_PORT=8080
+ARG SERVICE_PORT=8000
+ENV SERVICE_ADDRESS=${SERVICE_ADDRESS}
+ENV SERVICE_PORT=${SERVICE_PORT}
 
 # Set working directory
 WORKDIR /app
@@ -20,4 +22,4 @@ RUN python -m pip install --no-cache-dir -r requirements.txt
 EXPOSE ${SERVICE_PORT}
 
 # Run the service
-CMD ["python","src/app.py","--service-address",${SERVICE_ADDRESS},"--service-port",${SERVICE_PORT}]
+CMD ["bash", "-c", "python src/app.py --service-address $SERVICE_ADDRESS --service-port $SERVICE_PORT"]

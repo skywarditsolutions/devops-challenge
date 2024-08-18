@@ -18,7 +18,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PAT }}
-          logout: false
+          logout: true
       
       - name: Checkout code
         uses: actions/checkout@v4.1.7
@@ -28,5 +28,5 @@ jobs:
         with:
           context: ./challenge-1
           push: true
-          tags: grvoer424/challenge-api:latest
+          tags: grover424/challenge-api:latest
 

@@ -1,0 +1,732 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema",
+  "$id": "http://example.com/example.json",
+  "type": "object",
+  "default": {},
+  "title": "Root Schema",
+  "required": [
+      "environment",
+      "system",
+      "serviceName",
+      "domain",
+      "replicaCount",
+      "image",
+      "serviceAccount",
+      "containerPorts",
+      "service",
+      "ingress",
+      "autoscaling"
+  ],
+  "properties": {
+      "environment": {
+          "type": "string",
+          "default": "",
+          "title": "The environment Schema",
+          "examples": [
+              "dev"
+          ]
+      },
+      "system": {
+          "type": "string",
+          "default": "",
+          "title": "The system Schema",
+          "examples": [
+              "challenge"
+          ]
+      },
+      "serviceName": {
+          "type": "string",
+          "default": "",
+          "title": "The serviceName Schema",
+          "examples": [
+              "api"
+          ]
+      },
+      "domain": {
+          "type": "string",
+          "default": "",
+          "title": "The domain Schema",
+          "examples": [
+              "grove.sirwac.net"
+          ]
+      },
+      "replicaCount": {
+          "type": "integer",
+          "default": 0,
+          "title": "The replicaCount Schema",
+          "examples": [
+              1
+          ]
+      },
+      "image": {
+          "type": "object",
+          "default": {},
+          "title": "The image Schema",
+          "required": [
+              "repository",
+              "pullPolicy",
+              "tag"
+          ],
+          "properties": {
+              "repository": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The repository Schema",
+                  "examples": [
+                      "grover424/challenge-api"
+                  ]
+              },
+              "pullPolicy": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The pullPolicy Schema",
+                  "examples": [
+                      "Always"
+                  ]
+              },
+              "tag": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The tag Schema",
+                  "examples": [
+                      "latest"
+                  ]
+              }
+          },
+          "examples": [{
+              "repository": "grover424/challenge-api",
+              "pullPolicy": "Always",
+              "tag": "latest"
+          }]
+      },
+      "imagePullSecrets": {
+          "type": "array",
+          "default": [],
+          "title": "The imagePullSecrets Schema",
+          "items": {},
+          "examples": [
+              []
+          ]
+      },
+      "nameOverride": {
+          "type": "string",
+          "default": "",
+          "title": "The nameOverride Schema",
+          "examples": [
+              ""
+          ]
+      },
+      "fullnameOverride": {
+          "type": "string",
+          "default": "",
+          "title": "The fullnameOverride Schema",
+          "examples": [
+              ""
+          ]
+      },
+      "serviceAccount": {
+          "type": "object",
+          "default": {},
+          "title": "The serviceAccount Schema",
+          "required": [
+              "create",
+              "automount",
+              "annotations",
+              "name"
+          ],
+          "properties": {
+              "create": {
+                  "type": "boolean",
+                  "default": false,
+                  "title": "The create Schema",
+                  "examples": [
+                      true
+                  ]
+              },
+              "automount": {
+                  "type": "boolean",
+                  "default": false,
+                  "title": "The automount Schema",
+                  "examples": [
+                      true
+                  ]
+              },
+              "annotations": {
+                  "type": "object",
+                  "default": {},
+                  "title": "The annotations Schema",
+                  "required": [],
+                  "properties": {},
+                  "examples": [{}]
+              },
+              "name": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The name Schema",
+                  "examples": [
+                      ""
+                  ]
+              }
+          },
+          "examples": [{
+              "create": true,
+              "automount": true,
+              "annotations": {},
+              "name": ""
+          }]
+      },
+      "podAnnotations": {
+          "type": "object",
+          "default": {},
+          "title": "The podAnnotations Schema",
+          "required": [],
+          "properties": {},
+          "examples": [{}]
+      },
+      "podLabels": {
+          "type": "object",
+          "default": {},
+          "title": "The podLabels Schema",
+          "required": [],
+          "properties": {},
+          "examples": [{}]
+      },
+      "podSecurityContext": {
+          "type": "object",
+          "default": {},
+          "title": "The podSecurityContext Schema",
+          "required": [],
+          "properties": {},
+          "examples": [{}]
+      },
+      "securityContext": {
+          "type": "object",
+          "default": {},
+          "title": "The securityContext Schema",
+          "required": [],
+          "properties": {},
+          "examples": [{}]
+      },
+      "environmentVariables": {
+          "type": "array",
+          "default": [],
+          "title": "The environmentVariables Schema",
+          "items": {},
+          "examples": [
+              []
+          ]
+      },
+      "containerPorts": {
+          "type": "array",
+          "default": [],
+          "title": "The containerPorts Schema",
+          "items": {
+              "type": "integer",
+              "default": 0,
+              "title": "A Schema",
+              "examples": [
+                  8000
+              ]
+          },
+          "examples": [
+              [
+                  8000]
+          ]
+      },
+      "service": {
+          "type": "object",
+          "default": {},
+          "title": "The service Schema",
+          "required": [
+              "type",
+              "port"
+          ],
+          "properties": {
+              "type": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The type Schema",
+                  "examples": [
+                      "ClusterIP"
+                  ]
+              },
+              "port": {
+                  "type": "integer",
+                  "default": 0,
+                  "title": "The port Schema",
+                  "examples": [
+                      8000
+                  ]
+              }
+          },
+          "examples": [{
+              "type": "ClusterIP",
+              "port": 8000
+          }]
+      },
+      "ingress": {
+          "type": "object",
+          "default": {},
+          "title": "The ingress Schema",
+          "required": [
+              "enabled",
+              "className",
+              "annotations",
+              "hosts",
+              "tls",
+              "certificate"
+          ],
+          "properties": {
+              "enabled": {
+                  "type": "boolean",
+                  "default": false,
+                  "title": "The enabled Schema",
+                  "examples": [
+                      true
+                  ]
+              },
+              "className": {
+                  "type": "string",
+                  "default": "",
+                  "title": "The className Schema",
+                  "examples": [
+                      "traefik"
+                  ]
+              },
+              "annotations": {
+                  "type": "object",
+                  "default": {},
+                  "title": "The annotations Schema",
+                  "required": [
+                      "kubernetes.io/ingress.class",
+                      "traefik.ingress.kubernetes.io/router.entrypoints",
+                      "traefik.ingress.kubernetes.io/router.middlewares"
+                  ],
+                  "properties": {
+                      "kubernetes.io/ingress.class": {
+                          "type": "string",
+                          "default": "",
+                          "title": "The kubernetes.io/ingress.class Schema",
+                          "examples": [
+                              "traefik"
+                          ]
+                      },
+                      "traefik.ingress.kubernetes.io/router.entrypoints": {
+                          "type": "string",
+                          "default": "",
+                          "title": "The traefik.ingress.kubernetes.io/router.entrypoints Schema",
+                          "examples": [
+                              "websecure,web"
+                          ]
+                      },
+                      "traefik.ingress.kubernetes.io/router.middlewares": {
+                          "type": "string",
+                          "default": "",
+                          "title": "The traefik.ingress.kubernetes.io/router.middlewares Schema",
+                          "examples": [
+                              "challenge-api-ssl-redirect@kubernetescrd"
+                          ]
+                      }
+                  },
+                  "examples": [{
+                      "kubernetes.io/ingress.class": "traefik",
+                      "traefik.ingress.kubernetes.io/router.entrypoints": "websecure,web",
+                      "traefik.ingress.kubernetes.io/router.middlewares": "challenge-api-ssl-redirect@kubernetescrd"
+                  }]
+              },
+              "hosts": {
+                  "type": "array",
+                  "default": [],
+                  "title": "The hosts Schema",
+                  "items": {
+                      "type": "object",
+                      "default": {},
+                      "title": "A Schema",
+                      "required": [
+                          "host",
+                          "paths"
+                      ],
+                      "properties": {
+                          "host": {
+                              "type": "string",
+                              "default": "",
+                              "title": "The host Schema",
+                              "examples": [
+                                  "challenge-api.grove.sirwac.net"
+                              ]
+                          },
+                          "paths": {
+                              "type": "array",
+                              "default": [],
+                              "title": "The paths Schema",
+                              "items": {
+                                  "type": "object",
+                                  "default": {},
+                                  "title": "A Schema",
+                                  "required": [
+                                      "path",
+                                      "pathType"
+                                  ],
+                                  "properties": {
+                                      "path": {
+                                          "type": "string",
+                                          "default": "",
+                                          "title": "The path Schema",
+                                          "examples": [
+                                              "/"
+                                          ]
+                                      },
+                                      "pathType": {
+                                          "type": "string",
+                                          "default": "",
+                                          "title": "The pathType Schema",
+                                          "examples": [
+                                              "Prefix"
+                                          ]
+                                      }
+                                  },
+                                  "examples": [{
+                                      "path": "/",
+                                      "pathType": "Prefix"
+                                  }]
+                              },
+                              "examples": [
+                                  [{
+                                      "path": "/",
+                                      "pathType": "Prefix"
+                                  }]
+                              ]
+                          }
+                      },
+                      "examples": [{
+                          "host": "challenge-api.grove.sirwac.net",
+                          "paths": [{
+                              "path": "/",
+                              "pathType": "Prefix"
+                          }]
+                      }]
+                  },
+                  "examples": [
+                      [{
+                          "host": "challenge-api.grove.sirwac.net",
+                          "paths": [{
+                              "path": "/",
+                              "pathType": "Prefix"
+                          }]
+                      }]
+                  ]
+              },
+              "tls": {
+                  "type": "array",
+                  "default": [],
+                  "title": "The tls Schema",
+                  "items": {
+                      "type": "object",
+                      "default": {},
+                      "title": "A Schema",
+                      "required": [
+                          "secretName",
+                          "hosts"
+                      ],
+                      "properties": {
+                          "secretName": {
+                              "type": "string",
+                              "default": "",
+                              "title": "The secretName Schema",
+                              "examples": [
+                                  "certificate-api"
+                              ]
+                          },
+                          "hosts": {
+                              "type": "array",
+                              "default": [],
+                              "title": "The hosts Schema",
+                              "items": {
+                                  "type": "string",
+                                  "default": "",
+                                  "title": "A Schema",
+                                  "examples": [
+                                      "challenge-api.grove.sirwac.net"
+                                  ]
+                              },
+                              "examples": [
+                                  [
+                                      "challenge-api.grove.sirwac.net"]
+                              ]
+                          }
+                      },
+                      "examples": [{
+                          "secretName": "certificate-api",
+                          "hosts": [
+                              "challenge-api.grove.sirwac.net"
+                          ]
+                      }]
+                  },
+                  "examples": [
+                      [{
+                          "secretName": "certificate-api",
+                          "hosts": [
+                              "challenge-api.grove.sirwac.net"
+                          ]
+                      }]
+                  ]
+              },
+              "certificate": {
+                  "type": "object",
+                  "default": {},
+                  "title": "The certificate Schema",
+                  "required": [
+                      "environment",
+                      "duration",
+                      "renewalLeadTime",
+                      "organization"
+                  ],
+                  "properties": {
+                      "environment": {
+                          "type": "string",
+                          "default": "",
+                          "title": "The environment Schema",
+                          "examples": [
+                              "production"
+                          ]
+                      },
+                      "duration": {
+                          "type": "string",
+                          "default": "",
+                          "title": "The duration Schema",
+                          "examples": [
+                              "2160h"
+                          ]
+                      },
+                      "renewalLeadTime": {
+                          "type": "string",
+                          "default": "",
+                          "title": "The renewalLeadTime Schema",
+                          "examples": [
+                              "360h"
+                          ]
+                      },
+                      "organization": {
+                          "type": "string",
+                          "default": "",
+                          "title": "The organization Schema",
+                          "examples": [
+                              "Grove"
+                          ]
+                      }
+                  },
+                  "examples": [{
+                      "environment": "production",
+                      "duration": "2160h",
+                      "renewalLeadTime": "360h",
+                      "organization": "Grove"
+                  }]
+              }
+          },
+          "examples": [{
+              "enabled": true,
+              "className": "traefik",
+              "annotations": {
+                  "kubernetes.io/ingress.class": "traefik",
+                  "traefik.ingress.kubernetes.io/router.entrypoints": "websecure,web",
+                  "traefik.ingress.kubernetes.io/router.middlewares": "challenge-api-ssl-redirect@kubernetescrd"
+              },
+              "hosts": [{
+                  "host": "challenge-api.grove.sirwac.net",
+                  "paths": [{
+                      "path": "/",
+                      "pathType": "Prefix"
+                  }]
+              }],
+              "tls": [{
+                  "secretName": "certificate-api",
+                  "hosts": [
+                      "challenge-api.grove.sirwac.net"
+                  ]
+              }],
+              "certificate": {
+                  "environment": "production",
+                  "duration": "2160h",
+                  "renewalLeadTime": "360h",
+                  "organization": "Grove"
+              }
+          }]
+      },
+      "autoscaling": {
+          "type": "object",
+          "default": {},
+          "title": "The autoscaling Schema",
+          "required": [
+              "enabled",
+              "minReplicas",
+              "maxReplicas",
+              "targetCPUUtilizationPercentage"
+          ],
+          "properties": {
+              "enabled": {
+                  "type": "boolean",
+                  "default": false,
+                  "title": "The enabled Schema",
+                  "examples": [
+                      false
+                  ]
+              },
+              "minReplicas": {
+                  "type": "integer",
+                  "default": 0,
+                  "title": "The minReplicas Schema",
+                  "examples": [
+                      1
+                  ]
+              },
+              "maxReplicas": {
+                  "type": "integer",
+                  "default": 0,
+                  "title": "The maxReplicas Schema",
+                  "examples": [
+                      100
+                  ]
+              },
+              "targetCPUUtilizationPercentage": {
+                  "type": "integer",
+                  "default": 0,
+                  "title": "The targetCPUUtilizationPercentage Schema",
+                  "examples": [
+                      80
+                  ]
+              }
+          },
+          "examples": [{
+              "enabled": false,
+              "minReplicas": 1,
+              "maxReplicas": 100,
+              "targetCPUUtilizationPercentage": 80
+          }]
+      },
+      "persistentVolumeClaims": {
+          "type": "array",
+          "default": [],
+          "title": "The persistentVolumeClaims Schema",
+          "items": {},
+          "examples": [
+              []
+          ]
+      },
+      "volumes": {
+          "type": "array",
+          "default": [],
+          "title": "The volumes Schema",
+          "items": {},
+          "examples": [
+              []
+          ]
+      },
+      "volumeMounts": {
+          "type": "array",
+          "default": [],
+          "title": "The volumeMounts Schema",
+          "items": {},
+          "examples": [
+              []
+          ]
+      },
+      "nodeSelector": {
+          "type": "object",
+          "default": {},
+          "title": "The nodeSelector Schema",
+          "required": [],
+          "properties": {},
+          "examples": [{}]
+      },
+      "tolerations": {
+          "type": "array",
+          "default": [],
+          "title": "The tolerations Schema",
+          "items": {},
+          "examples": [
+              []
+          ]
+      },
+      "affinity": {
+          "type": "object",
+          "default": {},
+          "title": "The affinity Schema",
+          "required": [],
+          "properties": {},
+          "examples": [{}]
+      }
+  },
+  "examples": [{
+      "environment": "dev",
+      "system": "challenge",
+      "serviceName": "api",
+      "domain": "grove.sirwac.net",
+      "replicaCount": 1,
+      "image": {
+          "repository": "grover424/challenge-api",
+          "pullPolicy": "Always",
+          "tag": "latest"
+      },
+      "imagePullSecrets": [],
+      "nameOverride": "",
+      "fullnameOverride": "",
+      "serviceAccount": {
+          "create": true,
+          "automount": true,
+          "annotations": {},
+          "name": ""
+      },
+      "podAnnotations": {},
+      "podLabels": {},
+      "podSecurityContext": {},
+      "securityContext": {},
+      "environmentVariables": [],
+      "containerPorts": [
+          8000
+      ],
+      "service": {
+          "type": "ClusterIP",
+          "port": 8000
+      },
+      "ingress": {
+          "enabled": true,
+          "className": "traefik",
+          "annotations": {
+              "kubernetes.io/ingress.class": "traefik",
+              "traefik.ingress.kubernetes.io/router.entrypoints": "websecure,web",
+              "traefik.ingress.kubernetes.io/router.middlewares": "challenge-api-ssl-redirect@kubernetescrd"
+          },
+          "hosts": [{
+              "host": "challenge-api.grove.sirwac.net",
+              "paths": [{
+                  "path": "/",
+                  "pathType": "Prefix"
+              }]
+          }],
+          "tls": [{
+              "secretName": "certificate-api",
+              "hosts": [
+                  "challenge-api.grove.sirwac.net"
+              ]
+          }],
+          "certificate": {
+              "environment": "production",
+              "duration": "2160h",
+              "renewalLeadTime": "360h",
+              "organization": "Grove"
+          }
+      },
+      "autoscaling": {
+          "enabled": false,
+          "minReplicas": 1,
+          "maxReplicas": 100,
+          "targetCPUUtilizationPercentage": 80
+      },
+      "persistentVolumeClaims": [],
+      "volumes": [],
+      "volumeMounts": [],
+      "nodeSelector": {},
+      "tolerations": [],
+      "affinity": {}
+  }]
+}

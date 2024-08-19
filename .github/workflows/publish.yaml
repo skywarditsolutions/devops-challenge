@@ -29,4 +29,5 @@ jobs:
           context: ./challenge-1
           push: true
           tags: grover424/challenge-api:latest
+          target: release
 

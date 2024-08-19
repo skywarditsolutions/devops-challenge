@@ -1,14 +1,25 @@
-environment: env
-domain: mydomain.net
-application: myApp
-project: myProj
-serviceName: myServ
+# Default values for challenge-api.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# The target environment
+environment: dev
+
+# Name of the system deployed to
+system: challenge
+
+# Name of the service being deployed
+serviceName: api
+
+# Domain used for certificate and ingress
+domain: grove.sirwac.net
 
 replicaCount: 1
 
 image:
-  repository: hello-world
+  repository: grover424/challenge-api
   pullPolicy: Always
+  # Overrides the image tag whose default is the chart appVersion.
   tag: latest
 
 imagePullSecrets: []
@@ -16,45 +27,62 @@ nameOverride: ""
 fullnameOverride: ""
 
 serviceAccount:
+  # Specifies whether a service account should be created
   create: true
+  # Automatically mount a ServiceAccount's API credentials?
   automount: true
+  # Annotations to add to the service account
   annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
   name: ""
 
 podAnnotations: {}
 podLabels: {}
 
 podSecurityContext: {}
+  # fsGroup: 2000
 
 securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
 
+# Provide environment variables to the deployment/pods
 environmentVariables: []
 
-containerPorts: []
+# Ports to open for the pod
+containerPorts:
+  - 8000
 
-service: {}
+service:
+  type: ClusterIP
+  port: 8000
 
 ingress:
-  enabled: false
+  enabled: true
   className: "traefik"
   annotations:
     kubernetes.io/ingress.class: traefik
     traefik.ingress.kubernetes.io/router.entrypoints: websecure,web
-    traefik.ingress.kubernetes.io/router.middlewares: namespace-service-ssl-redirect@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: challenge-api-ssl-redirect@kubernetescrd
   hosts:
-    - host: hostname.domain.net
+    - host: challenge-api.grove.sirwac.net
       paths:
         - path: /
           pathType: Prefix
   tls:
-    - secretName: certificate-name
+    - secretName: certificate-api
       hosts:
-        - hostname.domain.net
+        - challenge-api.grove.sirwac.net
   certificate:
-    environment: environment
+    environment: production
     duration: 2160h
     renewalLeadTime: 360h
-    organization: SystemName
+    organization: Grove
 
 autoscaling:
   enabled: false
@@ -63,11 +91,17 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
+# Persistant data stores to prepare
 persistentVolumeClaims: []
 
+# Additional volumes on the output Deployment definition
 volumes: []
 
+# Additional volumeMounts on the output Deployment definition
 volumeMounts: []
+# - name: foo
+#   mountPath: "/etc/foo"
+#   readOnly: true
 
 nodeSelector: {}
 

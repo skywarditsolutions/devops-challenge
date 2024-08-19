@@ -1,6 +1,6 @@
 apiVersion: v2
-name: api
-description: A Helm chart for Kubernetes
+name: challenge-api
+description: An API service created as part of the Skyward Solutions DevOps Interview Challenge
 
 # A chart can be either an 'application' or a 'library' chart.
 #

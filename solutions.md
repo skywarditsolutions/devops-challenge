@@ -6,6 +6,14 @@ I do believe I've managed to successfully achieve nearly all primary and optiona
 
 Aside from the notes below, there are definitely improvements that could be made in here. The biggest example of this would be to optimize the GitHub Actions workflows to only fire off when (for this repository specifically) certain directories have changes.  This would prevent, say, building out and publishing a new Docker image if I change something as trivial as this 'solutions.md' file.
 
+One more thing - there are a handful of GitHub secrets required for some of these to run:
+- AWS_ACCESS_KEY
+- AWS_SECRET_KEY
+- DOCKERHUB_PAT
+- DOCKERHUB_USERNAME
+
+I figured you'd be able to glean this yourself, but wanted to point it out specifically because my implementation of the IAC for Challenge-3 requies access to S3. This may not be what you were expecting.
+
 ## Challenge-1
 Looking back at this Python I realize where I could improve things. I sort of reinvented the wheel by hanlding the "server_address" and "server_port" variables myself instead of simply launching everything with Flask. Oh well - it works, that would just be something I'd consider as a patch for "v1.1".
 

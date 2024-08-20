@@ -2,10 +2,17 @@
 ## Providers
 ################################
 terraform {
+  required_version = ">= 1.9.0"
+
   required_providers {
+    local = {
+      source  = "hashicorp/local"
+      version = "2.5.1"
+    }
+
     aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.21.0"
+      source = "hashicorp/aws"
+      version = "5.63.0"
     }
   }
 }

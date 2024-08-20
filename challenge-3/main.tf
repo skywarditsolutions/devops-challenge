@@ -1,9 +1,15 @@
+###############
+## LOCALS
+###############
 locals {
   system      = "challenge"
   environment = "dev"
   aws_region  = "us-east-2"
 }
 
+###############
+## MODULES
+###############
 module "network" {
   source = "./modules/network"
 
@@ -61,4 +67,12 @@ module "storage" {
 
   bucket_role                         = "assets"
   encryption_key_deletion_window_days = 10
+}
+
+###############
+## RESOURCES
+###############
+resource "local_file" "alb_dns_address" {
+  filename = "${path.module}/alb_dns.txt"
+  content  = module.network.alb_dns
 }

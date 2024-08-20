@@ -18,8 +18,8 @@ provider "aws" {
   default_tags {
     tags = {
       application = local.system
-      stack   = local.environment
-      note    = "Managed by Terraform"
+      stack       = local.environment
+      note        = "Managed by Terraform"
     }
   }
 }

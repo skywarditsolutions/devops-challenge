@@ -2,7 +2,7 @@ resource "aws_s3_bucket" "this" {
   bucket = "${var.system}-${var.environment}-${var.bucket_role}"
 
   tags = {
-    Name        = "${var.system}-${var.environment}-${var.bucket_role}"
+    Name = "${var.system}-${var.environment}-${var.bucket_role}"
   }
 }
 
@@ -26,12 +26,12 @@ resource "aws_s3_bucket_server_side_encryption_configuration" "this" {
   rule {
     apply_server_side_encryption_by_default {
       kms_master_key_id = aws_kms_key.this.id
-      sse_algorithm = "aws:kms"
+      sse_algorithm     = "aws:kms"
     }
   }
 }
 
 resource "aws_kms_key" "this" {
-  description = "S3 assets encryption key"
+  description             = "S3 assets encryption key"
   deletion_window_in_days = var.encryption_key_deletion_window_days
 }

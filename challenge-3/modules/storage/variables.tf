@@ -1,6 +1,6 @@
 variable "system" {
   description = "Name of the overall system"
-  type = string
+  type        = string
 }
 
 variable "environment" {
@@ -10,10 +10,10 @@ variable "environment" {
 
 variable "bucket_role" {
   description = "Bucket role"
-  type = string
+  type        = string
 }
 
 variable "encryption_key_deletion_window_days" {
   description = "Number of days in the KMS key deletion window"
-  type = number
+  type        = number
 }

@@ -1,5 +1,5 @@
 resource "aws_vpc" "this" {
-  cidr_block = "${var.vpc_cidr}"
+  cidr_block = var.vpc_cidr
 
   tags = {
     Name = "${var.system}-${var.environment}"
@@ -23,7 +23,7 @@ resource "aws_eip" "this" {
 }
 
 resource "aws_nat_gateway" "this" {
-  subnet_id = element(aws_subnet.public.*.id, 0)
+  subnet_id     = element(aws_subnet.public.*.id, 0)
   allocation_id = aws_eip.this.id
 
   tags = {
@@ -32,10 +32,10 @@ resource "aws_nat_gateway" "this" {
 }
 
 resource "aws_subnet" "public" {
-  count                   = 3
-  vpc_id                  = aws_vpc.this.id
-  cidr_block              = element(var.public_subnet_cidrs, count.index)
-  availability_zone       = data.aws_availability_zones.available.names[count.index]
+  count             = 3
+  vpc_id            = aws_vpc.this.id
+  cidr_block        = element(var.public_subnet_cidrs, count.index)
+  availability_zone = data.aws_availability_zones.available.names[count.index]
 
   tags = {
     Name = "${var.system}-${var.environment}-public_${data.aws_availability_zones.available.names[count.index]}"
@@ -44,10 +44,10 @@ resource "aws_subnet" "public" {
 }
 
 resource "aws_subnet" "private" {
-  count                   = 3
-  vpc_id                  = aws_vpc.this.id
-  cidr_block              = element(var.private_subnet_cidrs, count.index)
-  availability_zone       = data.aws_availability_zones.available.names[count.index]
+  count             = 3
+  vpc_id            = aws_vpc.this.id
+  cidr_block        = element(var.private_subnet_cidrs, count.index)
+  availability_zone = data.aws_availability_zones.available.names[count.index]
 
   tags = {
     Name = "${var.system}-${var.environment}-private-${data.aws_availability_zones.available.names[count.index]}"
@@ -94,7 +94,7 @@ resource "aws_route_table_association" "private" {
 }
 
 resource "aws_security_group" "this" {
-  name = "${var.system}-${var.environment}-alb"
+  name   = "${var.system}-${var.environment}-alb"
   vpc_id = aws_vpc.this.id
 
   ingress {

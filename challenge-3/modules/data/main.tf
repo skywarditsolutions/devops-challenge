@@ -1,22 +1,22 @@
 resource "aws_rds_cluster" "this" {
-  engine         = var.rds_engine
-  engine_version = var.rds_engine_version
-  cluster_identifier = "${var.system}-${var.environment}-myapp"
-  master_username    = var.rds_admin_username
-  master_password    = var.rds_admin_password
-  availability_zones = data.aws_availability_zones.available.names
-  db_subnet_group_name = aws_db_subnet_group.this.name
+  engine                 = var.rds_engine
+  engine_version         = var.rds_engine_version
+  cluster_identifier     = "${var.system}-${var.environment}-myapp"
+  master_username        = var.rds_admin_username
+  master_password        = var.rds_admin_password
+  availability_zones     = data.aws_availability_zones.available.names
+  db_subnet_group_name   = aws_db_subnet_group.this.name
   vpc_security_group_ids = [aws_security_group.this.id]
 }
 
 resource "aws_rds_cluster_instance" "this" {
-  count             = 3
+  count = 3
 
-  engine = var.rds_engine
-  engine_version = var.rds_engine_version
-  identifier        = "${var.system}-${var.environment}-myapp-${count.index}"
+  engine             = var.rds_engine
+  engine_version     = var.rds_engine_version
+  identifier         = "${var.system}-${var.environment}-myapp-${count.index}"
   cluster_identifier = aws_rds_cluster.this.id
-  instance_class    = var.rds_instance_size
+  instance_class     = var.rds_instance_size
 }
 
 resource "aws_db_subnet_group" "this" {
@@ -25,7 +25,7 @@ resource "aws_db_subnet_group" "this" {
 }
 
 resource "aws_security_group" "this" {
-  name = "${var.system}-${var.environment}-rds"
+  name   = "${var.system}-${var.environment}-rds"
   vpc_id = data.aws_vpc.system.id
 
   ingress {

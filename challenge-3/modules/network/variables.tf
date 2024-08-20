@@ -1,6 +1,6 @@
 variable "system" {
   description = "Name of the overall system"
-  type = string
+  type        = string
 }
 
 variable "environment" {
@@ -10,20 +10,20 @@ variable "environment" {
 
 variable "vpc_cidr" {
   description = "IP CIDR for the VPC"
-  type = string
+  type        = string
 }
 
 variable "public_subnet_cidrs" {
   description = "List of CIDRs for the public subnets"
-  type = list(string)
+  type        = list(string)
 }
 
 variable "private_subnet_cidrs" {
   description = "List of CIDRs for the private subnets"
-  type = list(string)
+  type        = list(string)
 }
 
 variable "inbound_traffic_port" {
   description = "Port to listen for traffic on"
-  type = number
+  type        = number
 }

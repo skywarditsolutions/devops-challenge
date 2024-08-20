@@ -1,6 +1,6 @@
 data "aws_vpc" "system" {
   filter {
-    name = "tag:Name"
+    name   = "tag:Name"
     values = ["${var.system}-${var.environment}"]
   }
 }
@@ -13,7 +13,7 @@ data "aws_subnets" "private" {
   filter {
     name   = "vpc-id"
     values = [data.aws_vpc.system.id]
-  }  
+  }
 
   filter {
     name   = "tag:type"
@@ -23,7 +23,7 @@ data "aws_subnets" "private" {
 
 data "aws_security_group" "ec2" {
   filter {
-    name = "tag:Name"
+    name   = "tag:Name"
     values = ["${var.system}-${var.environment}-ec2"]
   }
 }

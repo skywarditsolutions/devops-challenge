@@ -1,7 +1,7 @@
 resource "aws_launch_template" "this" {
-  name   = "${var.system}-${var.environment}-myApp"
-  image_id      = data.aws_ami.ubuntu.id
-  instance_type = "${var.instance_size}"
+  name                   = "${var.system}-${var.environment}-myApp"
+  image_id               = data.aws_ami.ubuntu.id
+  instance_type          = var.instance_size
   vpc_security_group_ids = [aws_security_group.this.id]
 
   block_device_mappings {
@@ -23,7 +23,7 @@ resource "aws_launch_template" "this" {
 }
 
 resource "aws_autoscaling_group" "this" {
-  name = "${var.system}-${var.environment}-myapp"
+  name                = "${var.system}-${var.environment}-myapp"
   vpc_zone_identifier = data.aws_subnets.private.ids
   min_size            = 1
   max_size            = 3
@@ -41,7 +41,7 @@ resource "aws_autoscaling_group" "this" {
 }
 
 resource "aws_security_group" "this" {
-  name = "${var.system}-${var.environment}-ec2"
+  name   = "${var.system}-${var.environment}-ec2"
   vpc_id = data.aws_vpc.system.id
 
   ingress {

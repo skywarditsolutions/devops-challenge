@@ -4,6 +4,8 @@ This was a pretty solid challenge overall and even had me learning a few new thi
 
 I do believe I've managed to successfully achieve nearly all primary and optional objectives.  The only item I am slightly concerned about is the optional step to "Pass coverage with dive".  For some reason I couldn't get it to run no matter how I set things up.  The closest I got resulted in repeatedly receiving an "access denided" error on the .dive-ci file, which was weird considering my user/group owned it and I tried every single permutation of permission I could think of.. even tried creating a new file, nada. I couldn't even find any submitted issues about the problem.  Maybe someone can walk me through the resolution to this issue during the next interview? I'd love to know if I was doing something wrong or if there was some craziness going on..
 
+Aside from the notes below, there are definitely improvements that could be made in here. The biggest example of this would be to optimize the GitHub Actions workflows to only fire off when (for this repository specifically) certain directories have changes.  This would prevent, say, building out and publishing a new Docker image if I change something as trivial as this 'solutions.md' file.
+
 ## Challenge-1
 Looking back at this Python I realize where I could improve things. I sort of reinvented the wheel by hanlding the "server_address" and "server_port" variables myself instead of simply launching everything with Flask. Oh well - it works, that would just be something I'd consider as a patch for "v1.1".
 
